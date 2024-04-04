@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -25,8 +26,9 @@ func main() {
 	}
 
 	h2 := func(w http.ResponseWriter, r *http.Request) {
-		log.Print("HTMX request")
-		log.Print(r.Header.Get("HX-Request"))
+		title := r.PostFormValue("title")
+		director := r.PostFormValue("director")
+		fmt.Println(title, director)
 	}
 
 	http.HandleFunc("/", h1)
